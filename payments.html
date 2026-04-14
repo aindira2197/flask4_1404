@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>To'lovlar</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: auto;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background: #f2f2f2;
+        }
+        .paid {
+            color: green;
+            font-weight: bold;
+        }
+        .not-paid {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h2 align="center">To'lovlar jadvali</h2>
+
+<table>
+    <tr>
+        <th>Mijoz</th>
+        <th>Summa</th>
+        <th>To'lov usuli</th>
+        <th>Holat</th>
+    </tr>
+
+    {% for p in payments %}
+    <tr>
+        <td>{{ p.client }}</td>
+        <td>{{ p.amount }}</td>
+        <td>{{ p.method }}</td>
+        <td>
+            {% if p.paid %}
+                <span class="paid">To'langan</span>
+            {% else %}
+                <span class="not-paid">Kutilmoqda</span>
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<br>
+
+<h3 align="center">
+    ✅ Jami to‘langan: {{ jami_tolangan }}
+</h3>
+
+<h3 align="center">
+    ❌ Jami qarzdorlik: {{ jami_qarz }}
+</h3>
+
+</body>
+</html>
